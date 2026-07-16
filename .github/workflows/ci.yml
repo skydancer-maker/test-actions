@@ -1,0 +1,46 @@
+# .github/workflows/ci.yml
+
+# 工作流名称（会显示在 GitHub Actions 界面中）
+name: 我的第一个 CI 流水线
+
+# 触发条件：当推送到 main 分支，或发起 Pull Request 时自动运行
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# 工作流包含一个或多个作业（Job）
+jobs:
+  # 定义一个名为 "test" 的作业
+  test:
+    # 指定运行环境为 Ubuntu Linux
+    runs-on: ubuntu-latest
+    
+    # 作业包含多个步骤（Step）
+    steps:
+      # 步骤1：检出代码（将仓库代码下载到运行环境中）
+      - name: 检出代码
+        uses: actions/checkout@v4
+      
+      # 步骤2：设置 Node.js 环境
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      # 步骤3：显示 Node.js 版本（验证环境设置成功）
+      - name: 查看 Node 版本
+        run: node --version
+      
+      # 步骤4：显示当前目录内容
+      - name: 查看文件列表
+        run: ls -la
+      
+      # 步骤5：运行测试（执行 package.json 中定义的 test 脚本）
+      - name: 运行测试
+        run: npm test
+      
+      # 步骤6：运行构建
+      - name: 运行构建
+        run: npm run build
