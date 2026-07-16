@@ -1,0 +1,9 @@
+{
+  "name": "test-actions",
+  "version": "1.0.0",
+  "description": "一个测试 GitHub Actions 的项目",
+  "scripts": {
+    "test": "echo '所有测试通过！✅'",
+    "build": "echo '构建完成！✅'"
+  }
+}
